@@ -6,16 +6,16 @@ const DELIMETER: &str = "====================";
 fn main() {
     let mut app: bool = true;
     while app {
-        options_display();
+        main_options_display();
         println!("Enter Selection:");
-        let input = get_input().trim().parse::<i32>().unwrap_or(-1);
+        let input = get_input().trim().parse::<i8>().unwrap_or(-1);
         app = main_menu_options(input);
     }
     
 }
 
 // This is used to display the options to the user
-fn options_display() {
+fn main_options_display() {
     println!("\n{}", DELIMETER);
     println!("Easters Accounting");
     println!("{}\n", DELIMETER);
@@ -26,7 +26,7 @@ fn options_display() {
 }
 
 // This takes a integer input from the user and redirects to the appropriate view
-fn main_menu_options(option: i32) -> bool {
+fn main_menu_options(option: i8) -> bool {
     match  option {
         1 => {
             println!("You selected Bills.");
@@ -75,22 +75,35 @@ fn bill_main_display() {
     println!("3: Edit Bill");
     println!("4: Return");
 
-    let bill_input = get_input().trim().parse::<i32>().unwrap_or(-1);
-    match bill_input {
+    
+    let bill_input = get_input().trim().parse::<i8>().unwrap_or(-1);
+    bill_menu_options(bill_input);
+}
+
+// This handles the users input in the bill menu
+fn bill_menu_options(option: i8) -> bool {
+    match option {
         1 => {
             println!("Adding new bill...");
+            true
         },
         2 => {
             println!("Viewing Current Bills");
+            true
         },
         3 => {
             println!("Editing Bill");
+            true
         },
         4 => {
-            println!("Returing to main menu.");
-            return;
+            println!("Returning to main menu.");
+            false
         },
-        _ => println!("Invalid Selection"),
+        _ => {
+            println!("Invalid Entry");
+            bill_main_display();
+            true
+        },
     }
 }
 
@@ -105,22 +118,34 @@ fn income_display() {
     println!("3: Edit Income");
     println!("4: Return");
 
-    let income_input = get_input().trim().parse::<i32>().unwrap_or(-1);
-    match income_input {
+    let income_input = get_input().trim().parse::<i8>().unwrap_or(-1);
+    income_menu_options(income_input);
+}
+
+// Handles user input in the income view
+fn income_menu_options(option: i8) -> bool {
+    match option {
         1 => {
-            println!("Adding new income...");
+            println!("Adding New Income");
+            true
         },
         2 => {
-            println!("Viewing Current incomes");
+            println!("Viewing Current Incomes");
+            true
         },
         3 => {
-            println!("Editing income");
+            println!("Editing Income");
+            true
         },
         4 => {
-            println!("Returing to main menu.");
-            return;
+            println!("Returning to Main Menu");
+            false
         },
-        _ => println!("Invalid Selection"),
+        _ => {
+            println!("Error, Invalid Selection");
+            income_display();
+            true
+        },
     }
 }
 
@@ -133,15 +158,25 @@ fn ledger_display() {
     println!("1: View Ledger");
     println!("2: Return");
 
-    let ledger_input = get_input().trim().parse::<i32>().unwrap_or(-1);
-    match ledger_input {
+    let ledger_input = get_input().trim().parse::<i8>().unwrap_or(-1);
+    ledger_menu_options(ledger_input);
+}
+
+// Handles user inputs in the ledger view
+fn ledger_menu_options(option: i8) -> bool {
+    match option {
         1 => {
-            println!("View Ledger...");
+            println!("View Ledger");
+            true
         },
         2 => {
-            println!("Returing to main menu.");
-            return;
+            println!("Returning to Main Menu");
+            false
+        }
+        _ => {
+            println!("Error, Invalid Selection");
+            ledger_display();
+            true
         },
-        _ => println!("Invalid Selection"),
     }
 }

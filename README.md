@@ -7,3 +7,4 @@ ChangeLog
 * Added a constant to be used for seperating headers from the sub menus.
 * Fixed a infinte loop issue.
 * Fixed a logic problem with the sub menus not loading properly.
+* Refactored the handling of user input to keep with single responsiblity concepts.
