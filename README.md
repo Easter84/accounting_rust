@@ -1,1 +1,1 @@
-This is a console application for handling accounts that is being written in Rust. It will have a connection to a SQLite db and contain the ability to add debtors, income sources and handles the ledgers.
+This is a console application for handling accounts written in Rust. It will connect to a SQLite db and contain the ability to add debtors, and income sources, and hold the ledgers. As the application grows I will add changes to this Readme.
